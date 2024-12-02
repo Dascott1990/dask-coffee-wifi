@@ -1,11 +1,15 @@
 /* General Styles */
+/* Ensure spacing between content and footer */
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
     color: #333;
+    padding-bottom: 80px; /* Add padding to prevent content overlap with the footer */
+     padding-bottom: 20px;
 }
+
 
 h1, h2, h5 {
     color: #343a40;
@@ -133,33 +137,123 @@ footer {
     bottom: 0;
     width: 100%;
     font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 footer p {
     margin: 0;
     font-size: 0.9rem;
 }
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav {
-        padding: 0.8rem;
-    }
 
-    nav a {
-        margin: 0 10px;
-        font-size: 1rem;
-    }
+/* Dark Mode Toggle Icon in Footer */
+.dark-mode-toggle {
+    font-size: 1.5rem;
+    color: #343a40; /* Dark color for the icon */
+    display: inline-block;
+    padding: 10px;
+    background-color: #fff; /* Light background */
+    border-radius: 50%; /* Circular shape */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Box shadow for subtle elevation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for breathing effect */
+}
 
-    .container {
-        padding: 15px;
-    }
+.dark-mode-toggle:hover {
+    transform: scale(1.1); /* Slightly enlarge the icon */
+}
 
-    li {
-        padding: 10px;
-    }
+.dark-mode-toggle:active {
+    transform: scale(0.95); /* Icon contracts when clicked */
+}
 
-    footer {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
+.dark-mode-toggle i {
+    transition: color 0.3s ease;
+}
+
+/* Breathing effect */
+.dark-mode-toggle:hover i {
+    color: #007bff; /* Change color on hover (can be customized) */
+}
+
+/* Footer Styling */
+footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Spacing between text and icon */
+}
+
+/* Ensure the icon is visible and positioned correctly */
+footer a {
+    color: #343a40;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #007bff; /* Change color when hovered */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #212121;
+    color: #f1f1f1;
+}
+
+body.dark-mode nav {
+    background-color: #333;
+}
+
+body.dark-mode nav a {
+    color: #f1f1f1;
+}
+
+body.dark-mode .container {
+    background-color: #333;
+    color: #f1f1f1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode li {
+    background-color: #444;
+    color: #f1f1f1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode li h2 {
+    color: #f1f1f1;
+}
+
+body.dark-mode footer {
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+body.dark-mode footer .container {
+    color: #f1f1f1;
+}
+
+body.dark-mode .dark-mode-toggle {
+    background-color: #212121;
+    color: #f1f1f1;
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+    background-color: #444;
+}
+
+/* Dark Mode Input Fields */
+body.dark-mode form input,
+body.dark-mode form textarea {
+    background-color: #555;
+    color: #f1f1f1;
+    border-color: #666;
+}
+
+body.dark-mode form button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+body.dark-mode form input:focus,
+body.dark-mode form textarea:focus {
+    border-color: #007bff;
 }

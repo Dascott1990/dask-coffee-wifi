@@ -2,21 +2,45 @@
 {% block title %}Cafes{% endblock %}
 {% block content %}
 <h1>List of Cafes</h1>
-<div class="row">
-    {% for cafe in cafes %}
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <img src="{{ cafe.img_url }}" class="card-img-top" alt="{{ cafe.name }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ cafe.name }}</h5>
-                <p class="card-text">
-                    <strong>Location:</strong> {{ cafe.location }}<br>
-                    <strong>Wifi:</strong> {{ "Yes" if cafe.has_wifi else "No" }}<br>
-                    <strong>Sockets:</strong> {{ "Yes" if cafe.has_sockets else "No" }}
-                </p>
+
+<!-- Search Bar with Filters -->
+<div class="container mt-4">
+    <form action="/cafes" method="get" class="d-flex justify-content-center">
+        <input type="text" name="loc" class="form-control w-50" placeholder="Enter location" value="{{ request.args.get('loc') }}">
+        <div class="form-check form-check-inline ms-3">
+            <input class="form-check-input" type="checkbox" name="wifi" id="wifi" value="true" {% if request.args.get('wifi') %} checked {% endif %}>
+            <label class="form-check-label" for="wifi">Wi-Fi</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="sockets" id="sockets" value="true" {% if request.args.get('sockets') %} checked {% endif %}>
+            <label class="form-check-label" for="sockets">Sockets</label>
+        </div>
+        <button type="submit" class="btn btn-primary ms-2">Search</button>
+    </form>
+</div>
+
+<!-- Cafes List -->
+<div class="row mt-4">
+    {% if cafes %}
+        {% for cafe in cafes %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ cafe.img_url }}" class="card-img-top" alt="{{ cafe.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cafe.name }}</h5>
+                    <p class="card-text">
+                        <strong>Location:</strong> {{ cafe.location }}<br>
+                        <strong>Wi-Fi:</strong> {{ "Yes" if cafe.has_wifi else "No" }}<br>
+                        <strong>Sockets:</strong> {{ "Yes" if cafe.has_sockets else "No" }}<br>
+                        <strong>Seats:</strong> {{ cafe.seats }}<br>
+                        <strong>Price:</strong> {{ cafe.coffee_price if cafe.coffee_price else "N/A" }}
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>No cafes found with your criteria.</p>
+    {% endif %}
 </div>
 {% endblock %}

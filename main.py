@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 Bootstrap(app)
+
 # CREATE DB
 class Base(DeclarativeBase):
     pass
@@ -41,10 +42,27 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/cafes")
+@app.route("/cafes", methods=["GET"])
 def show_cafes():
-    result = db.session.execute(db.select(Cafe).order_by(Cafe.name))
+    loc = request.args.get("loc")  # Location filter
+    wifi = request.args.get("wifi")  # Wi-Fi filter
+    sockets = request.args.get("sockets")  # Sockets filter
+
+    # Build the query dynamically based on the filters
+    query = db.select(Cafe).order_by(Cafe.name)
+
+    if loc:
+        query = query.filter(Cafe.location.ilike(f"%{loc}%"))
+
+    if wifi:
+        query = query.filter(Cafe.has_wifi == True)
+
+    if sockets:
+        query = query.filter(Cafe.has_sockets == True)
+
+    result = db.session.execute(query)
     all_cafes = result.scalars().all()
+
     return render_template("cafes.html", cafes=all_cafes)
 
 
