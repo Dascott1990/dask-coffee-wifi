@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add a New Cafe</h1>
+<form action="/add-cafe" method="post">
+    <input type="text" name="name" placeholder="Cafe Name" required>
+    <input type="text" name="map_url" placeholder="Map URL" required>
+    <input type="text" name="img_url" placeholder="Image URL" required>
+    <input type="text" name="location" placeholder="Location" required>
+    <input type="text" name="seats" placeholder="Number of Seats">
+    <label><input type="checkbox" name="wifi"> Wifi</label>
+    <label><input type="checkbox" name="sockets"> Sockets</label>
+    <label><input type="checkbox" name="toilet"> Toilet</label>
+    <label><input type="checkbox" name="calls"> Can Take Calls</label>
+    <input type="text" name="coffee_price" placeholder="Coffee Price">
+    <button type="submit">Add Cafe</button>
+</form>
+{% endblock %}

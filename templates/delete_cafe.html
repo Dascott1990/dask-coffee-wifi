@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Delete a Cafe</h1>
+<form action="/delete-cafe" method="post">
+    <input type="number" name="cafe_id" placeholder="Cafe ID" required>
+    <button type="submit">Delete Cafe</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Cafes{% endblock %}
+{% block content %}
+<h1>List of Cafes</h1>
+<div class="row">
+    {% for cafe in cafes %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <img src="{{ cafe.img_url }}" class="card-img-top" alt="{{ cafe.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ cafe.name }}</h5>
+                <p class="card-text">
+                    <strong>Location:</strong> {{ cafe.location }}<br>
+                    <strong>Wifi:</strong> {{ "Yes" if cafe.has_wifi else "No" }}<br>
+                    <strong>Sockets:</strong> {{ "Yes" if cafe.has_sockets else "No" }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
