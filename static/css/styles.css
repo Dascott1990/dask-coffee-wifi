@@ -25,6 +25,7 @@ a:hover {
 
 /* Navbar */
 nav {
+    position: fixed; /* Fix the navbar position */
     background-color: #007bff;
     padding: 1rem;
     text-align: center;
